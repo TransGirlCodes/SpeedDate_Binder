@@ -19,4 +19,4 @@ ENV PATH $PATH:$HOME/julia/bin
 
 
 # Install julia packages.
-RUN julia -e 'Pkg.init();Pkg.update();Pkg.add("IJulia");Pkg.add("Reactive.jl");Pkg.add("Interact")'
+RUN julia -e 'Pkg.init();Pkg.update();Pkg.add("IJulia");Pkg.add("Reactive");Pkg.add("Interact")'
