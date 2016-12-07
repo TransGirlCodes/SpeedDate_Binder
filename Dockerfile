@@ -4,16 +4,19 @@ MAINTAINER Ben J. Ward <ward9250@gmail.com>
 
 USER root
 
-# Add julia and the dependencies.
+# Add the dependencies for julia.
 RUN apt-get update
-RUN apt-get install -y software-properties-common
-RUN add-apt-repository ppa:staticfloat/juliareleases
-RUN add-apt-repository ppa:staticfloat/julia-deps
-RUN apt-get update
-RUN apt-get install -y julia libnettle4 && apt-get clean
+RUN apt-get install -y wget libzmq3-dev cmake libmpich-dev mpich && apt-get clean
 
 USER main
 
-# Install IJulia and so on.
-RUN julia -e 'Pkg.add("IJulia")'
-RUN julia -e 'Pkg.add("Gadfly")' && julia -e 'Pkg.add("RDatasets")'
+# Build the julia executable.
+
+RUN wget https://julialang.s3.amazonaws.com/bin/linux/x64/0.5/julia-0.5.0-linux-x86_64.tar.gz
+RUN mkdir $HOME/julia
+RUN tar xf julia-0.5.0-linux-x86_64.tar.gz -C $HOME/julia --strip-components=1
+ENV PATH $PATH:$HOME/julia/bin
+
+
+# Install julia packages.
+RUN julia -e 'Pkg.init();Pkg.update();Pkg.add("IJulia");Pkg.add("Gadfly");Pkg.add("RDatasets")'
