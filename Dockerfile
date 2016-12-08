@@ -2,11 +2,11 @@ FROM andrewosh/binder-base
 
 MAINTAINER Ben J. Ward <ward9250@gmail.com>
 
-USER root
+#USER root
 
 # Add the dependencies for julia.
-RUN apt-get update
-RUN apt-get install -y wget libzmq3-dev cmake libmpich-dev mpich && apt-get clean
+#RUN apt-get update
+#RUN apt-get install -y wget libzmq3-dev cmake libmpich-dev mpich && apt-get clean
 
 USER main
 
