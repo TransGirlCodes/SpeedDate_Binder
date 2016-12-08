@@ -5,7 +5,6 @@ MAINTAINER Ben J. Ward <ward9250@gmail.com>
 USER root
 
 RUN pip install -I --upgrade setuptools
-RUN pip install yadage
 RUN pip install --upgrade ipywidgets
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
 
