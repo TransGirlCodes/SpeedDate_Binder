@@ -11,7 +11,7 @@ MAINTAINER Ben J. Ward <ward9250@gmail.com>
 USER main
 
 # Build the julia executable.
-RUN git clone git://github.com/JuliaLang/julia.git && cd julia && git checkout release-0.5
+RUN git clone git://github.com/JuliaLang/julia.git && cd julia && git checkout release-0.5 && make
 #RUN wget https://julialang.s3.amazonaws.com/bin/linux/x64/0.5/julia-0.5.0-linux-x86_64.tar.gz
 #RUN mkdir $HOME/julia
 #RUN tar xf julia-0.5.0-linux-x86_64.tar.gz -C $HOME/julia --strip-components=1
