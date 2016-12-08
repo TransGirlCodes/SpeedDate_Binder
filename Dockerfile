@@ -10,8 +10,6 @@ RUN apt-get install -y wget libzmq3-dev cmake libmpich-dev mpich && apt-get clea
 
 USER main
 
-RUN pip install ipywidgets --upgrade
-
 # Install julia.
 RUN wget https://julialang.s3.amazonaws.com/bin/linux/x64/0.5/julia-0.5.0-linux-x86_64.tar.gz
 RUN mkdir $HOME/julia
@@ -23,3 +21,5 @@ ENV PATH $PATH:$HOME/julia/bin
 RUN julia -e 'Pkg.init();Pkg.update();Pkg.add("IJulia")'
 RUN julia -e 'Pkg.add("Reactive");Pkg.add("Interact");Pkg.add("Gadfly")'
 #RUN julia -e 'Pkg.checkout("Interact", "ipywidgets-4")'
+
+RUN pip install ipywidgets --upgrade
