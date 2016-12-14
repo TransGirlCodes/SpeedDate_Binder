@@ -23,4 +23,5 @@ ENV PATH $PATH:$HOME/julia/bin
 
 # Install julia packages.
 RUN julia -e 'Pkg.init();Pkg.update();Pkg.add("IJulia")'
-RUN julia -e 'Pkg.add("Reactive");Pkg.add("Interact");Pkg.add("Gadfly")'
+RUN julia -e 'Pkg.add("Reactive");Pkg.add("Interact");Pkg.add("Bio")'
+RUN julia -e 'Pkg.clone("https://github.com/Ward9250/SpeedDate.jl.git")'
