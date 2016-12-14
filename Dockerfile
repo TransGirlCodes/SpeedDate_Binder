@@ -13,7 +13,8 @@ USER main
 RUN pip install -I --upgrade setuptools
 RUN pip install --upgrade ipywidgets
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
-RUN jupyter notebook --NotebookApp.token=''
+#RUN jupyter notebook --NotebookApp.token=''
+RUN echo "c.NotebookApp.token = ''" >> jupyter_notebook_config.py
 
 # Install julia.
 RUN wget https://julialang.s3.amazonaws.com/bin/linux/x64/0.5/julia-0.5.0-linux-x86_64.tar.gz
