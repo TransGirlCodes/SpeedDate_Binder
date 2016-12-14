@@ -13,6 +13,7 @@ USER main
 RUN pip install -I --upgrade setuptools
 RUN pip install --upgrade ipywidgets
 RUN jupyter nbextension enable --py --sys-prefix widgetsnbextension
+RUN echo "c.NotebookApp.token = ''" >> jupyter_notebook_config.py
 
 # Install julia.
 RUN wget https://julialang.s3.amazonaws.com/bin/linux/x64/0.5/julia-0.5.0-linux-x86_64.tar.gz
@@ -22,4 +23,5 @@ ENV PATH $PATH:$HOME/julia/bin
 
 # Install julia packages.
 RUN julia -e 'Pkg.init();Pkg.update();Pkg.add("IJulia")'
-RUN julia -e 'Pkg.add("Reactive");Pkg.add("Interact");Pkg.add("Gadfly")'
+RUN julia -e 'Pkg.add("Reactive");Pkg.add("Interact");Pkg.add("Bio")'
+RUN julia -e 'Pkg.clone("https://github.com/Ward9250/SpeedDate.jl.git")'
